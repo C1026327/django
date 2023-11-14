@@ -53,21 +53,12 @@
                 {% endif %}
             {% block content %}{% endblock %}
             </div>
-            <div class="col-md-4">
-                <div class="content-section">
-                    <h3>General Information</h3>
-                    <p class='text-muted'>Lorem ipsum dolor sit amet, iudico docendi inciderint per eu, ea vis scripta senserit periculis.
-                      <ul class="list-group">
-                        <li class="list-group-item list-group-item-light">Latest Issues Reported</li>
-                        <li class="list-group-item list-group-item-light">IT Policies</li>
-                        <li class="list-group-item list-group-item-light">IT Regulations</li>
-                        <li class="list-group-item list-group-item-light">Upcoming Events</li>
-                      </ul>
-                    </p>
-                  </div>
-            </div>
+            {% block sidebar %}{% endblock %}
+
+            
         </div>
     </div>
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
