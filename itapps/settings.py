@@ -87,6 +87,17 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default':{
+#         'ENGINE': 'django.db.backends.sqlite',
+#         'NAME': 'itdb',
+#         'PORT': '3306',
+#         'HOSTNAME':'c1026327dcbs.mysql.database.azure.com',
+#         'USERNAME':'c1026327',
+#         'PASSWORD':'y6,:3DP8S327Kjk',
+#     }
+# }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -144,3 +155,6 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ],
 }
+
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = BASE_DIR / 'emails'

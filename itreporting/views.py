@@ -3,7 +3,10 @@ from .models import Issue
 from django.views.generic import ListView, DetailView,CreateView,UpdateView,DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
+from django.contrib import messages
 import requests
+from .forms import ContactForm
+from django.views.generic.edit import FormView
 
 # Create your views here.
 
@@ -26,9 +29,27 @@ def home(request):
 def about(request):
 
     return render(request, 'itreporting/about.html', {'title': 'About Us'})
-def contact(request):
 
-    return render(request, 'itreporting/contacts.html', {'title': 'Contact Us'})
+class ContactFormView(FormView):
+    form_class = ContactForm
+    template_name = 'itreporting/contact.html'
+    def get_context_data(self, **kwargs):
+        context=super(ContactFormView, self).get_context_data(**kwargs)
+        context.update({'title':'Contact Us'})
+        return context
+    
+    def form_valid(self,form):
+        form.send_mail()
+        messages.success(self.request, 'Successfully sent the enquiry')
+        return super().form_valid(form)
+
+    def form_invalid(self,form):
+        messages.warning(self.request, 'Unable to send the enquiry')
+        return super().form_invalid(form)
+        
+    def get_success_url(self):
+        return self.request.path
+
 
 def report(request):
 
